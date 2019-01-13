@@ -1,6 +1,6 @@
 # Prisma & react-admin
 
-## Prisma Server
+## [Prisma Server](https://www.prisma.io/docs)
 
 * Running Prisma container `docker-compose up -d`
   - PostgresSQL (configured in `docker-compose.yml`)
@@ -11,3 +11,51 @@
 
 * Deploy Prisma datamodel
   - `prisma deploy`
+
+* Add user in graphql console
+```
+mutation createUser($data: UserCreateInput!) {
+  createUser(data: $data) {
+    id
+    name
+  }
+}
+
+{
+  "data": {"name": "John"}
+}
+```
+
+## [react-admin-fe](https://github.com/marmelab/react-admin)
+
+* Add data provider lib [`ra-data-prisma`](https://www.npmjs.com/package/ra-data-prisma) with setup example
+
+```
+import buildPrismaProvider from 'ra-data-prisma';
+import { UserList } from './users';
+
+class App extends Component {
+    constructor() {
+        super();
+        this.state = { dataProvider: null };
+    }
+    componentDidMount() {
+        buildPrismaProvider({ client })
+            .then(dataProvider => this.setState({ dataProvider }));
+    }
+
+    render() {
+        const { dataProvider } = this.state;
+
+        if (!dataProvider) {
+            return <div>Loading</div>;
+        }
+
+        return (
+            <Admin dataProvider={dataProvider}>
+                <Resource name="User" list={UserList} />
+            </Admin>
+        );
+    }
+}
+```
