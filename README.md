@@ -6,5 +6,8 @@
   - PostgresSQL (configured in `docker-compose.yml`)
   - http://localhost:4466/
 
-* Configure Prisma API
-  - Bootstrap config fil by `prisma init --endpoint http://localhost:4466`
+* Bootstrap Configure Prisma API
+  - `prisma init --endpoint http://localhost:4466`
+
+* Deploy Prisma datamodel
+  - `prisma deploy`
