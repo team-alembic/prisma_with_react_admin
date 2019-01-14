@@ -2,6 +2,8 @@
 
 ## [Prisma Server](https://www.prisma.io/docs)
 
+* `cd prisma_server`
+
 * Running Prisma container `docker-compose up -d`
   - PostgresSQL (configured in `docker-compose.yml`)
   - http://localhost:4466/
@@ -74,6 +76,8 @@ mutation createPost($data: PostCreateInput!) {
   * deploy model chage by `prisma deploy`
 
 ## [react-admin-fe](https://github.com/marmelab/react-admin)
+
+* `cd react-admin-fe`
 
 * Add data provider lib [`ra-data-prisma`](https://www.npmjs.com/package/ra-data-prisma) with setup example
 
