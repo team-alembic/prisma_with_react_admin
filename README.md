@@ -106,3 +106,5 @@ class App extends Component {
     }
 }
 ```
+
+* Run front end `npm install & npm start`
