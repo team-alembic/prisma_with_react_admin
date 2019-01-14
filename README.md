@@ -1,20 +1,12 @@
 # Prisma & react-admin
 
-## [Prisma Server](https://www.prisma.io/docs)
+## Start app
 
-* `cd prisma_server`
-
-* Running Prisma container `docker-compose up -d`
-  - PostgresSQL (configured in `docker-compose.yml`)
-  - http://localhost:4466/
-
-* Bootstrap Configure Prisma API
-  - `prisma init --endpoint http://localhost:4466`
-
-* Deploy Prisma datamodel
+* In folder `/prisma_server` run
+  - `docker-compose up -d`
   - `prisma deploy`
+  - seed data in `http://localhost:4466/`
 
-* Add user in graphql console
 ```
 mutation createUser($data: UserCreateInput!) {
   createUser(data: $data) {
@@ -28,26 +20,7 @@ mutation createUser($data: UserCreateInput!) {
 }
 ```
 
-* Update datamodel by update `datamodel.prisma` file
-  * introduce model relation
-```
-type User {
-  id: ID! @unique
-  email: String @unique
-  name: String!
-  posts: [Post!]!
-}
-
-// Query Variables
-type Post {
-  id: ID! @unique
-  title: String!
-  published: Boolean! @default(value: "false")
-  author: User
-}
-```
-
-  * Create Post
+*Replace* id with newly created user id
 ```
 mutation createPost($data: PostCreateInput!) {
   createPost(data: $data) {
@@ -66,14 +39,52 @@ mutation createPost($data: PostCreateInput!) {
   	"published": true,
     "author": {
       "connect": {
-        "id": "cjqviwqse000a0964i1qfc8pk"
+        "id": "<new-user-id>"
       }
     }
     
   }
 }
 ```
-  * deploy model chage by `prisma deploy`
+
+* In folder `/react-admin-fe` run
+
+  - Run front end `npm install & npm start`
+
+# Note
+
+## [Prisma Server](https://www.prisma.io/docs)
+
+* Running Prisma container `docker-compose up -d`
+  - PostgresSQL (configured in `docker-compose.yml`)
+  - http://localhost:4466/
+
+* Bootstrap Configure Prisma API
+  - `prisma init --endpoint http://localhost:4466`
+
+* Deploy Prisma datamodel
+  - `prisma deploy`
+
+* Update datamodel by update `datamodel.prisma` file
+  * introduce model relation e.g
+```
+type User {
+  id: ID! @unique
+  email: String @unique
+  name: String!
+  posts: [Post!]!
+}
+
+// Query Variables
+type Post {
+  id: ID! @unique
+  title: String!
+  published: Boolean! @default(value: "false")
+  author: User
+}
+```
+
+* deploy updated model by `prisma deploy`
 
 ## [react-admin-fe](https://github.com/marmelab/react-admin)
 
