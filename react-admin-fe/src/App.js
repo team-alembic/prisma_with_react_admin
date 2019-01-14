@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
 import { Admin, Resource } from 'react-admin';
-import { UserList } from './users';
+import { UserList, UserCreate } from './users';
 import buildPrismaProvider from 'ra-data-prisma';
-
+import UserIcon from '@material-ui/icons/Group';
 // const client = new ApolloClient();
 
 class App extends Component {
@@ -11,7 +11,7 @@ class App extends Component {
         this.state = { dataProvider: null };
     }
     componentDidMount() {
-        buildPrismaProvider({ clientOptions: { uri: 'http://localhost:4466' }})
+        buildPrismaProvider({ clientOptions: { uri: 'http://localhost:4466' } })
             .then(dataProvider => this.setState({ dataProvider }));
     }
 
@@ -23,8 +23,16 @@ class App extends Component {
         }
 
         return (
-            <Admin dataProvider={dataProvider}>
-                <Resource name="User" list={UserList} />
+            <Admin
+                dataProvider={dataProvider}
+                title="Prisma Admin"
+            >
+                <Resource
+                    name="User"
+                    list={UserList}
+                    create={UserCreate}
+                    icon={UserIcon}
+                />
             </Admin>
         );
     }
