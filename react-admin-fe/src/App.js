@@ -3,7 +3,6 @@ import { Admin, Resource } from 'react-admin';
 import { UserList, UserCreate } from './users';
 import buildPrismaProvider from 'ra-data-prisma';
 import UserIcon from '@material-ui/icons/Group';
-// const client = new ApolloClient();
 
 class App extends Component {
     constructor() {

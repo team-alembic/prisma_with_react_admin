@@ -26,6 +26,53 @@ mutation createUser($data: UserCreateInput!) {
 }
 ```
 
+* Update datamodel by update `datamodel.prisma` file
+  * introduce model relation
+```
+type User {
+  id: ID! @unique
+  email: String @unique
+  name: String!
+  posts: [Post!]!
+}
+
+// Query Variables
+type Post {
+  id: ID! @unique
+  title: String!
+  published: Boolean! @default(value: "false")
+  author: User
+}
+```
+
+  * Create Post
+```
+mutation createPost($data: PostCreateInput!) {
+  createPost(data: $data) {
+ 	title
+    author {
+      name
+    }
+    published
+  }
+}
+
+// Query Variables
+{
+  "data": {
+  	"title": "Title 1",
+  	"published": true,
+    "author": {
+      "connect": {
+        "id": "cjqviwqse000a0964i1qfc8pk"
+      }
+    }
+    
+  }
+}
+```
+  * deploy model chage by `prisma deploy`
+
 ## [react-admin-fe](https://github.com/marmelab/react-admin)
 
 * Add data provider lib [`ra-data-prisma`](https://www.npmjs.com/package/ra-data-prisma) with setup example
