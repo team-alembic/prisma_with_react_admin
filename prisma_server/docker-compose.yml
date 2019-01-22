@@ -8,21 +8,16 @@ services:
     environment:
       PRISMA_CONFIG: |
         port: 4466
+        # uncomment the next line and provide the env var PRISMA_MANAGEMENT_API_SECRET=my-secret to activate cluster security
+        # managementApiSecret: my-secret
         databases:
           default:
             connector: postgres
-            host: postgres
-            port: 5432
-            user: prisma
-            password: prisma
-            migrations: true
-  postgres:
-    image: postgres:10.5
-    restart: always
-    environment:
-      POSTGRES_USER: prisma
-      POSTGRES_PASSWORD: prisma
-    volumes:
-      - postgres:/var/lib/postgresql/data
-volumes:
-  postgres:
+            host: host.docker.internal
+            database: dolphin_dev
+            schema: public
+            user: postgres
+            password: postgres
+            rawAccess: true
+            port: '5432'
+            migrations: false

@@ -1,0 +1,74 @@
+type Account @pgTable(name: "account") {
+  account_users: [Account_user!]!
+  id: UUID! @id @unique
+  inserted_at: DateTime!
+  name: String!
+  systems: [System!]!
+  updated_at: DateTime!
+}
+
+type Account_user @pgTable(name: "account_user") {
+  account: Account @pgRelation(column: "account_id")
+  id: UUID! @id @unique
+  inserted_at: DateTime!
+  updated_at: DateTime!
+  user: User @pgRelation(column: "user_id")
+}
+
+type Camera @pgTable(name: "camera") {
+  channel_number: Int!
+  id: UUID! @id @unique
+  inserted_at: DateTime!
+  ip: String!
+  name: String!
+  password: String!
+  port: Int!
+  system: System @pgRelation(column: "system_id")
+  type_number: Int!
+  updated_at: DateTime!
+  username: String!
+}
+
+type Dispatch_type @pgTable(name: "dispatch_type") {
+  # Type 'ARRAY' is not yet supported.
+  # emails: <Unknown>
+  id: UUID! @id @unique
+  inserted_at: DateTime!
+  name: String!
+  # Type 'ARRAY' is not yet supported.
+  # phone_numbers: <Unknown>
+  system: System @pgRelation(column: "system_id")
+  updated_at: DateTime!
+}
+
+type Schema_migrations @pgTable(name: "schema_migrations") {
+  id: Int! @id @pgColumn(name: "version") @unique
+  inserted_at: DateTime
+}
+
+type System @pgTable(name: "system") {
+  account: Account @pgRelation(column: "account_id")
+  address: String!
+  cameras: [Camera!]!
+  city: String!
+  dispatch_types: [Dispatch_type!]!
+  gsm_number: String!
+  home_mode_active: Boolean @default(value: false)
+  id: UUID! @id @unique
+  inserted_at: DateTime!
+  name: String!
+  object_id: Int!
+  postcode: String!
+  updated_at: DateTime!
+}
+
+type User @pgTable(name: "user") {
+  account_users: [Account_user!]!
+  auth0_id: String!
+  email: String!
+  first_name: String!
+  id: UUID! @id @unique
+  inserted_at: DateTime!
+  last_name: String!
+  updated_at: DateTime!
+}

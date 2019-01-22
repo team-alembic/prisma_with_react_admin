@@ -1,2 +1,3 @@
 react-admin-fe/node_modules
 prisma_server/generated/prisma-client
+.DS_Store
