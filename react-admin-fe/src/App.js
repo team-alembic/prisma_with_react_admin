@@ -1,7 +1,8 @@
 import React, { Component } from 'react';
 import { Admin, Resource } from 'react-admin';
 import buildPrismaProvider from 'ra-data-prisma';
-import { UserList, UserCreate, UserEdit, UserShow, AccountsList, AccountsCreate } from './users';
+import users from "./users/";
+import accounts from "./accounts";
 
 class App extends Component {
     constructor() {
@@ -27,18 +28,8 @@ class App extends Component {
                 dataProvider={dataProvider}
                 title="Prisma Admin"
             >
-                <Resource
-                    name="Account"
-                    list={AccountsList}
-                    create={AccountsCreate}
-                />
-                <Resource
-                    name="User"
-                    list={UserList}
-                    create={UserCreate}
-                    show={UserShow}
-                    edit={UserEdit}
-                />
+                <Resource name="User" {...users} />
+                <Resource name="Account" {...accounts} />
             </Admin>
         );
     }
