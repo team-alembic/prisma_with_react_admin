@@ -12,8 +12,6 @@ const UserCreate = props => (
       <TextInput source="last_name" />
       <TextInput source="auth0_id" />
       <TextInput source="email" />
-      <TextInput source="inserted_at" />
-      <TextInput source="updated_at" />
     </SimpleForm>
   </Create>
 );
