@@ -12,12 +12,10 @@ const UserTitle = ({ record }) => {
 const UserEdit = props => (
   <Edit title={<UserTitle />} {...props}>
     <SimpleForm>
-      <TextInput source="first_name" />
-      <TextInput source="last_name" />
-      <TextInput source="auth0_id" />
+      <TextInput source="firstName" />
+      <TextInput source="lastName" />
+      <TextInput source="auth0Id" />
       <TextInput source="email" />
-      <TextInput source="inserted_at" />
-      <TextInput source="updated_at" />
     </SimpleForm>
   </Edit>
 );

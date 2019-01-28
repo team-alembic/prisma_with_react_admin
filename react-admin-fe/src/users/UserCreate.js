@@ -8,9 +8,9 @@ import {
 const UserCreate = props => (
   <Create {...props}>
     <SimpleForm>
-      <TextInput source="first_name" />
-      <TextInput source="last_name" />
-      <TextInput source="auth0_id" />
+      <TextInput source="firstName" />
+      <TextInput source="lastName" />
+      <TextInput source="auth0Id" />
       <TextInput source="email" />
     </SimpleForm>
   </Create>
