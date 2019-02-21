@@ -1,10 +1,13 @@
 import React from "react";
 import {
+  ChipField,
   Datagrid,
   EditButton,
   List,
+  ReferenceManyField,
   Responsive,
-  TextField,
+  SingleFieldList,
+  TextField
 } from "react-admin";
 
 const UserList = props => (
@@ -12,13 +15,9 @@ const UserList = props => (
     <Responsive
       small={
         <Datagrid>
-          <TextField source="first_name" />
-          <TextField source="last_name" />
-          <TextField source="auth0_id" />
-          <TextField source="email" />
-          <TextField source="inserted_at" />
-          <TextField source="updated_at" />
           <TextField source="id" />
+          <TextField source="email" />
+          <TextField source="name" />
           <EditButton basePath="/user" />
         </Datagrid>
       }

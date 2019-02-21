@@ -1,19 +1,12 @@
 import React from "react";
-import {
-  Create,
-  SimpleForm,
-  TextInput,
-} from "react-admin";
+import { Create, SimpleForm, TextInput } from "react-admin";
 
 const UserCreate = props => (
   <Create {...props}>
     <SimpleForm>
-      <TextInput source="first_name" />
-      <TextInput source="last_name" />
-      <TextInput source="auth0_id" />
+      <TextInput source="id" />
       <TextInput source="email" />
-      <TextInput source="inserted_at" />
-      <TextInput source="updated_at" />
+      <TextInput source="name" />
     </SimpleForm>
   </Create>
 );
