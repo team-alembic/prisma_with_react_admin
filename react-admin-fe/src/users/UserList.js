@@ -7,7 +7,8 @@ import {
   ReferenceManyField,
   Responsive,
   SingleFieldList,
-  TextField
+  TextField,
+  DeleteButton
 } from "react-admin";
 
 const UserList = props => (
@@ -18,7 +19,8 @@ const UserList = props => (
           <TextField source="id" />
           <TextField source="email" />
           <TextField source="name" />
-          <EditButton basePath="/user" />
+          <EditButton />
+          <DeleteButton source="/user" />
         </Datagrid>
       }
     />
