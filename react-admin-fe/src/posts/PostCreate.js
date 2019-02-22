@@ -1,14 +1,13 @@
 import React from "react";
-import { Create, SimpleForm, TextInput } from "react-admin";
+import { BooleanInput, Create, SimpleForm, TextInput } from "react-admin";
 
 const PostCreate = props => {
   return (
     <Create {...props}>
       <SimpleForm>
         <TextInput source="name" />
-        <TextInput source="id" />
         <TextInput source="title" />
-        <TextInput source="published" />
+        <BooleanInput label="Published" source="published" />
       </SimpleForm>
     </Create>
   );
