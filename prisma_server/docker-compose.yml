@@ -1,16 +1,18 @@
-version: "3"
+# building the docker image for prisma and postgres
+
+version: "3"                                  # version
 services:
   prisma:
-    image: prismagraphql/prisma:1.26
+    image: prismagraphql/prisma:1.26          # fetching graphql prisma (pulling from docker hub)
     restart: always
     ports:
-      - "4466:4466"
+      - "4466:4466"                           # first port is local machine:second port is the docker image (prisma:docker)
     environment:
       PRISMA_CONFIG: |
-        port: 4466
+        port: 4466                            # docker image port for prisma
         databases:
           default:
-            connector: postgres
+            connector: postgres               # tell prisma where to fetch the data
             host: postgres
             port: 5432
             user: prisma

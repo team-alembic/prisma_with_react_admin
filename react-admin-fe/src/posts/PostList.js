@@ -8,6 +8,7 @@ const PostList = props => {
         <TextField source="id" />
         <TextField source="title" />
         <TextField source="published" />
+        <TextField source="count" />
       </Datagrid>
     </List>
   );
